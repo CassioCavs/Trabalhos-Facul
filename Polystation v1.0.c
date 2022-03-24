@@ -25,7 +25,7 @@ int main()
 			system("cls");
 				
 			int p, repeat;
-			char p1, p2, p3, a, b, c;	
+			char p1, p2, p3, a, A, b, B,c, C;	
 		{
 			primeira:
 				
@@ -38,15 +38,18 @@ int main()
 			switch(p1)
 				{
 					case 'a':
-					printf("Voce errou!!! Nao foi dessa vez :-(\n\n");
+					case 'A':	
+					printf("Voce errou!!! A resposta certa era (B)\n\n");
 					break;
 					
 					case 'b':
+					case 'B':
 					printf("Voce acertou!!! Parabens :-)\n\n");
 					break;
 					
 					case 'c':
-					printf("Voce errou!!! Nao foi dessa vez :-(\n\n");
+					case 'C':	
+					printf("Voce errou!!! A resposta certa era (B)\n\n");
 					break;
 					
 					default :
@@ -63,15 +66,18 @@ int main()
 			switch(p2)
 				{
 					case 'a':
+					case 'A':
 					printf("Voce acertou!!! Parabens :-)\n\n");
 					break;
 					
 					case 'b':
-					printf("Voce errou!!! Nao foi dessa vez :-(\n\n");
+					case 'B':
+					printf("Voce errou!!! A resposta certa era (A)\n\n");
 					break;
 					
 					case 'c':
-					printf("Voce errou!!! Nao foi dessa vez :-(\n\n");
+					case 'C':
+					printf("Voce errou!!! A resposta certa era (A)\n\n");
 					break;
 					
 					default :
@@ -88,14 +94,17 @@ int main()
 			switch(p3)
 				{
 					case 'a':
-					printf("Voce errou!!! Nao foi dessa vez :-(\n\n");
+					case 'A':	
+					printf("Voce errou!!! A resposta certa era (C)\n\n");
 					break;
 					
 					case 'b':
-					printf("Voce errou!!! Nao foi dessa vez :-(\n\n");
+					case 'B':
+					printf("Voce errou!!! A resposta certa era (C)\n\n");
 					break;
 					
 					case 'c':
+					case 'C':
 					printf("Voce acertou!!! Parabens :-)\n\n");
 					break;
 					
