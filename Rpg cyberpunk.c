@@ -7,6 +7,7 @@ char armas;
 char armour;
 int dado12;
 int dado61 = 0, dado62 = 0, dado4 = 0;
+int iForca = 0, iDestreza = 0, iAgilidade = 0, iConstituicao = 0;
 typedef struct personagens
 {
 	char Nome[50];
@@ -242,10 +243,10 @@ void criacao(PERSONAGENS personagens)
 	ecbert.defesa = 19;
 	ecbert.agilidade = 7;
 	
-	ragnar.pv = 40;
+	ragnar.pv = 37;
 	ragnar.dano = 36;
-	ragnar.defesa = 44;
-	ragnar.agilidade = 10;
+	ragnar.defesa = 30;
+	ragnar.agilidade = 8;
 	
 	int batalha, defesa2, defesa1, pv1, pv2;
 	int i, a, op;
@@ -253,7 +254,7 @@ void criacao(PERSONAGENS personagens)
 	pv1 = personagens.Pv;
 	defesa1 = personagens.prot;
 	srand(time(NULL));
-	i = rand()%3;
+	i = rand () %3;
 	
 	system("cls");
 	
@@ -474,12 +475,96 @@ void criacao(PERSONAGENS personagens)
 		}
 		else if(horik.pv <= 0)
 		{
+		    int pontos = 5;
 			printf("\nvoce ganhou\n");
-			printf("\nParabens voce ganhou +5 atk e +4 de agilidade\n");
-		    personagens.Agilidade = personagens.Agilidade + 4;
-		    personagens.gun = personagens.gun + 5;
-		    printf("\n\nAgilidade: %d", personagens.Agilidade);
-			printf("\n\nAtaque: %d\n\n", personagens.gun);
+		    printf("Pontos: %d\n\n", pontos);
+	        printf("Quantos pontos voce quer distribuir em forca?\n");
+	        scanf(" %d", &iForca);
+	        pontos = pontos - iForca;
+	        printf("\nPontos: %d\n\n", pontos);
+	
+	        printf("Quantos pontos voce quer distribuir em destreza?\n");
+	        scanf(" %d", &iDestreza);
+	        pontos = pontos - iDestreza;
+	        printf("\nPontos: %d\n\n", pontos);
+	
+	        printf("Quantos pontos voce quer distribuir em agilidade?\n");
+	        scanf(" %d", &iAgilidade);
+	        pontos = pontos - iAgilidade;
+	        printf("\nPontos: %d\n\n", pontos);
+	
+	       printf("Quantos pontos voce quer distribuir em constituicao?\n");
+	       scanf(" %d", &iConstituicao);
+	       pontos = pontos - iConstituicao;
+	       
+	       personagens.Forca = personagens.Forca + iForca;
+	       personagens.Destreza = personagens.Destreza + iDestreza;
+	       personagens.Agilidade = personagens.Agilidade + iAgilidade;
+	       personagens.constituicao = personagens.constituicao + iConstituicao;
+	       personagens.Pv = personagens.Pv + personagens.constituicao;
+			printf("\nSeus novos stats sao: \n");
+			
+			printf("\nForca: %d", personagens.Forca);
+			printf("\nDestreza: %d", personagens.Destreza);
+			printf("\nAgilidade: %d", personagens.Agilidade);
+			printf("\nConstituicao: %d", personagens.constituicao);
+			printf("\nPontos de vida: %d", personagens.Pv);
+
+			printf("\n\nAgora escolha uma arma: ");
+			printf("\n|A- Espada Longa|B- Macahado Leviantan  |C- Arco de atreus  |\n");
+	        printf("\n|Arma Pesada       |Arma Leve         |Arma Leve         |\n");
+	        printf("\n|Dano: 12           |Dano: 10           |Dano: 8           |\n\n");
+	        printf("Escolha a opcao desejada: ");
+	        scanf(" %c", &armas);
+	
+	
+	        switch(armas)
+	    {
+		case 'a':
+		case 'A':	
+			
+	        dado12 = rand() %12;
+            dado12 = dado12 + 1;
+	        personagens.gun = 12 + dado12 + 1.5 * personagens.Forca;
+	        printf("\nVoce escolheu Espada Longa!\n");
+	        printf("Seu dado foi %d, seu dano eh: %d\n\n", dado12, personagens.gun);
+			break;
+			
+		case 'b':
+		case 'B':	
+				;
+	            dado61 = rand() %6;
+	            dado61 = dado61 + 1;
+	            dado62 = rand() %6;
+	            dado62 = dado62 + 1;
+	            dado4 = rand() %4;
+	            dado4 = dado4 + 1;
+	
+	            personagens.gun = 10 + dado61 + dado62 + dado4 + personagens.Destreza;
+	
+	            printf("\nVoce escolheu os Machado Leviatan\n");
+	            printf("Seus dados foram %d, %d e %d, seu dano eh: %d\n\n", dado61, dado62, dado4, personagens.gun);
+			break;
+			
+		case 'c':
+		case 'C':
+			
+	            dado61 = rand() %6;
+	            dado61 = dado61 + 1;
+	            dado62 = rand() %6;
+	            dado62 = dado62 + 1;
+	            dado4 = rand() %4;
+	            dado4 = dado4 + 1;
+	
+	           personagens.gun = 8 + dado61 + dado62 + dado4 + personagens.Destreza;
+	
+	           printf("\nVoce escolheu arco de atreus!\n");
+	           printf("Seus dados foram %d, %d e %d, seu dano eh: %d\n\n", dado61, dado62, dado4, personagens.gun);
+			break;
+			
+		default:
+			printf("Valor invalido");
+	}
 		}
 	}
 	else if(i == 1)
@@ -699,13 +784,96 @@ void criacao(PERSONAGENS personagens)
 		}
 		else if(borg.pv <= 0)
 		{
+		    int pontos = 5;
 			printf("\nvoce ganhou\n");
-			("\nParabens voce ganhou +5 atk e +4 de agilidade\n");
-		    personagens.Agilidade = personagens.Agilidade + 4;
-		    personagens.gun = personagens.gun + 5;
-		    printf("\n\nAgilidade: %d", personagens.Agilidade);
-		    printf("\n\nAtaque: %d\n\n", personagens.gun);
-		    exit(0);
+		    printf("Pontos: %d\n\n", pontos);
+	        printf("Quantos pontos voce quer distribuir em forca?\n");
+	        scanf(" %d", &iForca);
+	        pontos = pontos - iForca;
+	        printf("\nPontos: %d\n\n", pontos);
+	
+	        printf("Quantos pontos voce quer distribuir em destreza?\n");
+	        scanf(" %d", &iDestreza);
+	        pontos = pontos - iDestreza;
+	        printf("\nPontos: %d\n\n", pontos);
+	
+	        printf("Quantos pontos voce quer distribuir em agilidade?\n");
+	        scanf(" %d", &iAgilidade);
+	        pontos = pontos - iAgilidade;
+	        printf("\nPontos: %d\n\n", pontos);
+	
+	       printf("Quantos pontos voce quer distribuir em constituicao?\n");
+	       scanf(" %d", &iConstituicao);
+	       pontos = pontos - iConstituicao;
+	       
+	       personagens.Forca = personagens.Forca + iForca;
+	       personagens.Destreza = personagens.Destreza + iDestreza;
+	       personagens.Agilidade = personagens.Agilidade + iAgilidade;
+	       personagens.constituicao = personagens.constituicao + iConstituicao;
+	       personagens.Pv = personagens.Pv + personagens.constituicao;
+			printf("\nSeus novos stats sao: \n");
+			
+			printf("\nForca: %d", personagens.Forca);
+			printf("\nDestreza: %d", personagens.Destreza);
+			printf("\nAgilidade: %d", personagens.Agilidade);
+			printf("\nConstituicao: %d", personagens.constituicao);
+			printf("\nPontos de vida: %d", personagens.Pv);
+
+			printf("\n\nAgora escolha uma arma: ");
+			printf("\n|A- Espada Longa|B- Macahado Leviantan  |C- Arco de atreus  |\n");
+	        printf("\n|Arma Pesada       |Arma Leve         |Arma Leve         |\n");
+	        printf("\n|Dano: 12           |Dano: 10           |Dano: 8           |\n\n");
+	        printf("Escolha a opcao desejada: ");
+	        scanf(" %c", &armas);
+	
+	
+	        switch(armas)
+	    {
+		case 'a':
+		case 'A':	
+			
+	        dado12 = rand() %12;
+            dado12 = dado12 + 1;
+	        personagens.gun = 12 + dado12 + 1.5 * personagens.Forca;
+	        printf("\nVoce escolheu Espada Longa!\n");
+	        printf("Seu dado foi %d, seu dano eh: %d\n\n", dado12, personagens.gun);
+			break;
+			
+		case 'b':
+		case 'B':	
+				;
+	            dado61 = rand() %6;
+	            dado61 = dado61 + 1;
+	            dado62 = rand() %6;
+	            dado62 = dado62 + 1;
+	            dado4 = rand() %4;
+	            dado4 = dado4 + 1;
+	
+	            personagens.gun = 10 + dado61 + dado62 + dado4 + personagens.Destreza;
+	
+	            printf("\nVoce escolheu os Machado Leviatan\n");
+	            printf("Seus dados foram %d, %d e %d, seu dano eh: %d\n\n", dado61, dado62, dado4, personagens.gun);
+			break;
+			
+		case 'c':
+		case 'C':
+			
+	            dado61 = rand() %6;
+	            dado61 = dado61 + 1;
+	            dado62 = rand() %6;
+	            dado62 = dado62 + 1;
+	            dado4 = rand() %4;
+	            dado4 = dado4 + 1;
+	
+	           personagens.gun = 8 + dado61 + dado62 + dado4 + personagens.Destreza;
+	
+	           printf("\nVoce escolheu arco de atreus!\n");
+	           printf("Seus dados foram %d, %d e %d, seu dano eh: %d\n\n", dado61, dado62, dado4, personagens.gun);
+			break;
+			
+		default:
+			printf("Valor invalido");
+	}
 		}
 	}	
 	else if(i == 2)
@@ -926,12 +1094,96 @@ void criacao(PERSONAGENS personagens)
 		}	
 		else if(aelle.pv <= 0)
 		{
+		    int pontos = 5;
 			printf("\nvoce ganhou\n");
-			printf("\nParabens voce ganhou +5 atk e +4 de agilidade\n");
-		    personagens.Agilidade = personagens.Agilidade + 4;
-		    personagens.gun = personagens.gun + 5;
-		    printf("\n\nAgilidade: %d", personagens.Agilidade);
-			printf("\n\nAtaque: %d\n\n", personagens.gun);
+		    printf("Pontos: %d\n\n", pontos);
+	        printf("Quantos pontos voce quer distribuir em forca?\n");
+	        scanf(" %d", &iForca);
+	        pontos = pontos - iForca;
+	        printf("\nPontos: %d\n\n", pontos);
+	
+	        printf("Quantos pontos voce quer distribuir em destreza?\n");
+	        scanf(" %d", &iDestreza);
+	        pontos = pontos - iDestreza;
+	        printf("\nPontos: %d\n\n", pontos);
+	
+	        printf("Quantos pontos voce quer distribuir em agilidade?\n");
+	        scanf(" %d", &iAgilidade);
+	        pontos = pontos - iAgilidade;
+	        printf("\nPontos: %d\n\n", pontos);
+	
+	       printf("Quantos pontos voce quer distribuir em constituicao?\n");
+	       scanf(" %d", &iConstituicao);
+	       pontos = pontos - iConstituicao;
+	       
+	       personagens.Forca = personagens.Forca + iForca;
+	       personagens.Destreza = personagens.Destreza + iDestreza;
+	       personagens.Agilidade = personagens.Agilidade + iAgilidade;
+	       personagens.constituicao = personagens.constituicao + iConstituicao;
+	       personagens.Pv = personagens.Pv + personagens.constituicao;
+			printf("\nSeus novos stats sao: \n");
+			
+			printf("\nForca: %d", personagens.Forca);
+			printf("\nDestreza: %d", personagens.Destreza);
+			printf("\nAgilidade: %d", personagens.Agilidade);
+			printf("\nConstituicao: %d", personagens.constituicao);
+			printf("\nPontos de vida: %d", personagens.Pv);
+
+			printf("\n\nAgora escolha uma arma: ");
+			printf("\n|A- Espada Longa|B- Macahado Leviantan  |C- Arco de atreus  |\n");
+	        printf("\n|Arma Pesada       |Arma Leve         |Arma Leve         |\n");
+	        printf("\n|Dano: 12           |Dano: 10           |Dano: 8           |\n\n");
+	        printf("Escolha a opcao desejada: ");
+	        scanf(" %c", &armas);
+	
+	
+	        switch(armas)
+	    {
+		case 'a':
+		case 'A':	
+			
+	        dado12 = rand() %12;
+            dado12 = dado12 + 1;
+	        personagens.gun = 12 + dado12 + 1.5 * personagens.Forca;
+	        printf("\nVoce escolheu Espada Longa!\n");
+	        printf("Seu dado foi %d, seu dano eh: %d\n\n", dado12, personagens.gun);
+			break;
+			
+		case 'b':
+		case 'B':	
+				;
+	            dado61 = rand() %6;
+	            dado61 = dado61 + 1;
+	            dado62 = rand() %6;
+	            dado62 = dado62 + 1;
+	            dado4 = rand() %4;
+	            dado4 = dado4 + 1;
+	
+	            personagens.gun = 10 + dado61 + dado62 + dado4 + personagens.Destreza;
+	
+	            printf("\nVoce escolheu os Machado Leviatan\n");
+	            printf("Seus dados foram %d, %d e %d, seu dano eh: %d\n\n", dado61, dado62, dado4, personagens.gun);
+			break;
+			
+		case 'c':
+		case 'C':
+			
+	            dado61 = rand() %6;
+	            dado61 = dado61 + 1;
+	            dado62 = rand() %6;
+	            dado62 = dado62 + 1;
+	            dado4 = rand() %4;
+	            dado4 = dado4 + 1;
+	
+	           personagens.gun = 8 + dado61 + dado62 + dado4 + personagens.Destreza;
+	
+	           printf("\nVoce escolheu arco de atreus!\n");
+	           printf("Seus dados foram %d, %d e %d, seu dano eh: %d\n\n", dado61, dado62, dado4, personagens.gun);
+			break;
+			
+		default:
+			printf("Valor invalido");
+	}
 		}
 	}
 	
@@ -1153,12 +1405,40 @@ void criacao(PERSONAGENS personagens)
 		}
 		else if(rollo.pv <= 0)
 		{
+		    int pontos = 10;
 			printf("\nvoce ganhou\n");
-			printf("\nParabens voce ganhou +5 atk e +4 de agilidade\n");
-		    personagens.Agilidade = personagens.Agilidade + 4;
-		    personagens.gun = personagens.gun + 5;
-		    printf("\n\nAgilidade: %d", personagens.Agilidade);
-			printf("\n\nAtaque: %d", personagens.gun);
+		    printf("Pontos: %d\n\n", pontos);
+	        printf("Quantos pontos voce quer distribuir em forca?\n");
+	        scanf(" %d", &iForca);
+	        pontos = pontos - iForca;
+	        printf("\nPontos: %d\n\n", pontos);
+	
+	        printf("Quantos pontos voce quer distribuir em destreza?\n");
+	        scanf(" %d", &iDestreza);
+	        pontos = pontos - iDestreza;
+	        printf("\nPontos: %d\n\n", pontos);
+	
+	        printf("Quantos pontos voce quer distribuir em agilidade?\n");
+	        scanf(" %d", &iAgilidade);
+	        pontos = pontos - iAgilidade;
+	        printf("\nPontos: %d\n\n", pontos);
+	
+	       printf("Quantos pontos voce quer distribuir em constituicao?\n");
+	       scanf(" %d", &iConstituicao);
+	       pontos = pontos - iConstituicao;
+	       
+	       personagens.Forca = personagens.Forca + iForca;
+	       personagens.Destreza = personagens.Destreza + iDestreza;
+	       personagens.Agilidade = personagens.Agilidade + iAgilidade;
+	       personagens.constituicao = personagens.constituicao + iConstituicao;
+	       personagens.Pv = personagens.Pv + personagens.constituicao;
+			printf("\nSeus novos stats sao: \n");
+			
+			printf("\nForca: %d", personagens.Forca);
+			printf("\nDestreza: %d", personagens.Destreza);
+			printf("\nAgilidade: %d", personagens.Agilidade);
+			printf("\nConstituicao: %d", personagens.constituicao);
+			printf("\nPontos de vida: %d", personagens.Pv);
 		}
 	}
 	else if(i == 1){
@@ -1377,12 +1657,40 @@ void criacao(PERSONAGENS personagens)
 		}
 		else if(ecbert.pv <= 0)
 		{
+		    int pontos = 10;
 			printf("\nvoce ganhou\n");
-			printf("\nParabens voce ganhou +5 atk e +4 de agilidade\n");
-		    personagens.Agilidade = personagens.Agilidade + 4;
-		    personagens.gun = personagens.gun + 5;
-		    printf("\n\nAgilidade: %d", personagens.Agilidade);
-			printf("\n\nAtaque: %d", personagens.gun);
+		    printf("Pontos: %d\n\n", pontos);
+	        printf("Quantos pontos voce quer distribuir em forca?\n");
+	        scanf(" %d", &iForca);
+	        pontos = pontos - iForca;
+	        printf("\nPontos: %d\n\n", pontos);
+	
+	        printf("Quantos pontos voce quer distribuir em destreza?\n");
+	        scanf(" %d", &iDestreza);
+	        pontos = pontos - iDestreza;
+	        printf("\nPontos: %d\n\n", pontos);
+	
+	        printf("Quantos pontos voce quer distribuir em agilidade?\n");
+	        scanf(" %d", &iAgilidade);
+	        pontos = pontos - iAgilidade;
+	        printf("\nPontos: %d\n\n", pontos);
+	
+	       printf("Quantos pontos voce quer distribuir em constituicao?\n");
+	       scanf(" %d", &iConstituicao);
+	       pontos = pontos - iConstituicao;
+	       
+	       personagens.Forca = personagens.Forca + iForca;
+	       personagens.Destreza = personagens.Destreza + iDestreza;
+	       personagens.Agilidade = personagens.Agilidade + iAgilidade;
+	       personagens.constituicao = personagens.constituicao + iConstituicao;
+	       personagens.Pv = personagens.Pv + personagens.constituicao;
+			printf("\nSeus novos stats sao: \n");
+			
+			printf("\nForca: %d", personagens.Forca);
+			printf("\nDestreza: %d", personagens.Destreza);
+			printf("\nAgilidade: %d", personagens.Agilidade);
+			printf("\nConstituicao: %d", personagens.constituicao);
+			printf("\nPontos de vida: %d", personagens.Pv);
 		}
 	}
 	defesa2 = ragnar.defesa;
@@ -1477,12 +1785,12 @@ void criacao(PERSONAGENS personagens)
 						printf("O oponente usou uma pocao! Mas a vida dele ja esta cheia\n\n");
 					}
 					else if(ragnar.pv <= 0){
-						ecbert.pv = 0;
+						ragnar.pv = 0;
 					}
 					else{
 						ragnar.pv = ragnar.pv + dado1 + dado2 + dado3;
 						if(ragnar.pv >= pv2){
-							ecbert.pv = pv2;
+							ragnar.pv = pv2;
 							printf("O oponente usou uma pocao! Os PV dele subiram para %d\n\n", ragnar.pv);
 						}
 						else{
