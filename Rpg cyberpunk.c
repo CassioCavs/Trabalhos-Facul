@@ -1998,7 +1998,7 @@ void criacao(PERSONAGENS personagens)
 	}
 	else if(boi.pv <= 0)
 	{
-		printf("VOCE GANHOU UHUUUULL!!!! voce conquistou sua vinganca");
+		printf("VOCE GANHOU UHUUUULL!!!! voce conquistou sua vinganca!");
 
 	}
 }
