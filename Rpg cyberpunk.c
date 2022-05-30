@@ -268,8 +268,8 @@ void criacao(PERSONAGENS personagens)
 	caua.defesa = 19;
 	caua.agilidade = 7;
 	
-	boi.pv = 37;
-	boi.dano = 36;
+	boi.pv = 35;
+	boi.dano = 32;
 	boi.defesa = 30;
 	boi.agilidade = 8;
 	
@@ -1998,7 +1998,7 @@ void criacao(PERSONAGENS personagens)
 	}
 	else if(boi.pv <= 0)
 	{
-		printf("VOCE GANHOU UHUUUULL!!!! voce conquistou sua vinganca!");
+		printf("VOCE GANHOU UHUUUULL!!!! voce conquistou sua vinganca");
 
 	}
 }
