@@ -45,7 +45,8 @@ void criacao(PERSONAGENS personagens);
 int main()
 {
 	PERSONAGENS personagens;
-	menu:
+	do{
+	
 	
 	printf("Bem vindo ao menu!!\n");
 	printf("//////////////////////////////////////////CYBERPUNK/////////////////////////////////////////////////////////////\n");
@@ -65,16 +66,11 @@ int main()
 		
 		case 2 :
 		printf("Em um mundo onde a tecnologia evolui bruscamente, existe uma cidade\nesquecida por Deus onde o trafico reina, a poluicao em todo lugar, crimes e\nmortes, a policia nem liga mais. Um ex agente secreto viuvo tem sua filha\nsequestrada por traficantes da cidade, entao ele comeca a procura-la ate\ndescobrir que ela esta morta, morta por overdose de uma droga experimental\nque o traficante estava desenvolvendo. O Agente acaba descobrindo o nome\ndo traficante que orquestrou tudo e vai atras de sua vinganca.");
-		printf("\n\nPressione 'Enter' para continuar\n");
-	
-		getchar();
-		
-	
-		system("cls");
-		goto menu;
 		break;
-	}
-	return 0;
+	} 
+	}while(numero != 3);
+	
+
 }
 
 void criacao(PERSONAGENS personagens)
@@ -1216,7 +1212,7 @@ void criacao(PERSONAGENS personagens)
 		}
 	}
 	
-	i = 0;
+	i = rand() %2;
 	
 	if(i == 0){
 		defesa2 = clear.defesa;
