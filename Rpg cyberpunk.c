@@ -5,6 +5,7 @@
 
 char armas;
 char armour;
+int numero;
 int dado12;
 int dado61 = 0, dado62 = 0, dado4 = 0;
 int iForca = 0, iDestreza = 0, iAgilidade = 0, iConstituicao = 0;
@@ -30,12 +31,12 @@ typedef struct stats{
 }inimigos;
 
 PERSONAGENS personagens;
-inimigos horik;
-inimigos borg;
-inimigos aelle;
-inimigos rollo;
-inimigos ecbert;
-inimigos ragnar;
+inimigos hernanes;
+inimigos jael;
+inimigos portaand;
+inimigos clear;
+inimigos caua;
+inimigos boi;
 
 void criacao(PERSONAGENS personagens);
 
@@ -44,7 +45,35 @@ void criacao(PERSONAGENS personagens);
 int main()
 {
 	PERSONAGENS personagens;
-	criacao(personagens);
+	menu:
+	
+	printf("Bem vindo ao menu!!\n");
+	printf("//////////////////////////////////////////CYBERPUNK/////////////////////////////////////////////////////////////\n");
+    printf("Selecione a opcao que deseja:\n\n");
+    printf("1- Comecar o jogo\n");
+    printf("2- Historia do jogo\n");
+    printf("3- Fechar o jogo\n");
+    printf("////////////////////////////////////////////////////////////////////////////////////////////////////////////////\n");
+    scanf(" %d", &numero);
+    fflush(stdin);
+	
+	switch(numero)
+	{
+		case 1 :
+			criacao(personagens);
+		break;	
+		
+		case 2 :
+		printf("Em um mundo onde a tecnologia evolui bruscamente, existe uma cidade\nesquecida por Deus onde o trafico reina, a poluicao em todo lugar, crimes e\nmortes, a policia nem liga mais. Um ex agente secreto viuvo tem sua filha\nsequestrada por traficantes da cidade, entao ele comeca a procura-la ate\ndescobrir que ela esta morta, morta por overdose de uma droga experimental\nque o traficante estava desenvolvendo. O Agente acaba descobrindo o nome\ndo traficante que orquestrou tudo e vai atras de sua vinganca.");
+		printf("\n\nPressione 'Enter' para continuar\n");
+	
+		getchar();
+		
+	
+		system("cls");
+		goto menu;
+		break;
+	}
 	return 0;
 }
 
@@ -106,9 +135,9 @@ void criacao(PERSONAGENS personagens)
 	printf("(Calculo da arma pesada: Dano + Dado de 12 Lados * 1,5 * Forca)\n");
 	printf("(Calculo da arma leve: Dano + 2 Dados de 6 Lados + Dado de 4 Lados + Destreza)\n\n");
 	
-	printf("|A- Escudo e Espada|B- Dois Machados  |C- Arco e Flecha  |\n");
-	printf("|Arma Pesada       |Arma Leve         |Arma Leve         |\n");
-	printf("|Dano: 6           |Dano: 5           |Dano: 4           |\n\n");
+	printf("|A- Foice Sanguinea|B- Espada de obsidiana  |C- Adagas Ionicas  |\n");
+	printf("|Arma Pesada       |Arma Leve               |Arma Leve          |\n");
+	printf("|Dano: 6           |Dano: 5                 |Dano: 4            |\n\n");
 	printf("Escolha a opcao desejada: ");
 	scanf(" %c", &armas);
 	
@@ -121,7 +150,7 @@ void criacao(PERSONAGENS personagens)
 	        dado12 = rand() %12;
             dado12 = dado12 + 1;
 	        personagens.gun = 6 + dado12 + 1.5 * personagens.Forca;
-	        printf("\nVoce escolheu espada e escudo!\n");
+	        printf("\nVoce escolheu foice sanguinea!\n");
 	        printf("Seu dado foi %d, seu dano eh: %d\n\n", dado12, personagens.gun);
 			break;
 			
@@ -137,7 +166,7 @@ void criacao(PERSONAGENS personagens)
 	
 	            personagens.gun = 5 + dado61 + dado62 + dado4 + personagens.Destreza;
 	
-	            printf("\nVoce escolheu os dois machados!\n");
+	            printf("\nVoce escolheu os espada de obsidiana!\n");
 	            printf("Seus dados foram %d, %d e %d, seu dano eh: %d\n\n", dado61, dado62, dado4, personagens.gun);
 			break;
 			
@@ -153,7 +182,7 @@ void criacao(PERSONAGENS personagens)
 	
 	           personagens.gun = 4 + dado61 + dado62 + dado4 + personagens.Destreza;
 	
-	           printf("\nVoce escolheu arco e flecha!\n");
+	           printf("\nVoce escolheu adagas ionicas!\n");
 	           printf("Seus dados foram %d, %d e %d, seu dano eh: %d\n\n", dado61, dado62, dado4, personagens.gun);
 			break;
 			
@@ -169,8 +198,8 @@ void criacao(PERSONAGENS personagens)
 	system("cls");
 	printf("Agora que ja esta armado, escolha sua armadura:\n");
 	printf("(Calculo da defesa: Defesa da armadura + 1,5 * constituicao)\n\n");
-	printf("|A- Pele de Dragao |B- Pele de Urso   |C- Pele de Lobo   |\n");
-	printf("|Defesa: 7         |Defesa: 5         |Defesa: 3         |\n\n");
+	printf("|A- Carapuca Draconica |B- Armadura de Placas   |C- Pele de Lobo   |\n");
+	printf("|Defesa: 7             |Defesa: 5               |Defesa: 3         |\n\n");
 	printf("Escolha a opcao desejada: ");
 	scanf(" %c", &armour);
 	
@@ -179,21 +208,21 @@ void criacao(PERSONAGENS personagens)
 		case 'A':
 		case 'a':
 			personagens.prot = 7 + 1.5 * personagens.constituicao;
-	        printf("\nVoce escolheu a armadura de pele de dragao!\n");
+	        printf("\nVoce escolheu a carapuca draconica!\n");
 	        printf("Sua defesa total eh %d\n\n", personagens.prot);
 		break;
 		
 		case 'b':
 		case 'B':
-			personagens.prot = 4 + 1.5 * personagens.constituicao;
-	        printf("\nVoce escolheu a armadura de pele de urso!\n");
+			personagens.prot = 5 + 1.5 * personagens.constituicao;
+	        printf("\nVoce escolheu a armadura de placas\n");
 	        printf("Sua defesa total eh %d\n\n", personagens.prot);
 		break;
 		
 		case 'c':
 		case 'C':
-			personagens.prot = 2 + 1.5 * personagens.constituicao;
-	        printf("\nVoce escolheu a armadura de pele de urso!\n");
+			personagens.prot = 3 + 1.5 * personagens.constituicao;
+	        printf("\nVoce escolheu a pele de lobo!\n");
 	        printf("Sua defesa total eh %d\n\n", personagens.prot);
 		break;	
 	}
@@ -218,35 +247,35 @@ void criacao(PERSONAGENS personagens)
 	
 	getchar();
 	
-	horik.pv = 7;
-	horik.dano = 8;
-	horik.defesa = 15;
-	horik.agilidade = 4;
+	hernanes.pv = 7;
+	hernanes.dano = 8;
+	hernanes.defesa = 15;
+	hernanes.agilidade = 4;
 	
-	borg.pv = 10;
-	borg.dano = 10;
-	borg.defesa = 15;
-	borg.agilidade = 3;
+	jael.pv = 10;
+	jael.dano = 10;
+	jael.defesa = 15;
+	jael.agilidade = 3;
 		
-	aelle.pv = 10;
-	aelle.dano = 10;
-	aelle.defesa = 14;
-	aelle.agilidade = 4;
+	portaand.pv = 10;
+	portaand.dano = 10;
+	portaand.defesa = 14;
+	portaand.agilidade = 4;
 	
-	rollo.pv = 15;
-	rollo.dano = 15;
-	rollo.defesa = 20;
-	rollo.agilidade = 7;
+	clear.pv = 15;
+	clear.dano = 15;
+	clear.defesa = 20;
+	clear.agilidade = 7;
 	
-	ecbert.pv = 15;
-	ecbert.dano = 17;
-	ecbert.defesa = 19;
-	ecbert.agilidade = 7;
+	caua.pv = 15;
+	caua.dano = 17;
+	caua.defesa = 19;
+	caua.agilidade = 7;
 	
-	ragnar.pv = 37;
-	ragnar.dano = 36;
-	ragnar.defesa = 30;
-	ragnar.agilidade = 8;
+	boi.pv = 37;
+	boi.dano = 36;
+	boi.defesa = 30;
+	boi.agilidade = 8;
 	
 	int batalha, defesa2, defesa1, pv1, pv2;
 	int i, a, op;
@@ -260,19 +289,19 @@ void criacao(PERSONAGENS personagens)
 	
 	if(i == 0)
 	{
-		defesa2 = horik.defesa;
-		pv2 = horik.pv;
-		printf("O Seu oponente eh Horik\n\n");
+		defesa2 = hernanes.defesa;
+		pv2 = hernanes.pv;
+		printf("O Seu oponente eh Hernanes Brocador\n\n");
 		do{
-			horik.defesa = defesa2;
+			hernanes.defesa = defesa2;
 			personagens.prot = defesa1;
 			a = rand()%3;
-			if(personagens.Agilidade >= horik.agilidade){
+			if(personagens.Agilidade >= hernanes.agilidade){
 				printf("Os stats dele sao:\n");
-				printf("PV:        %d\n", horik.pv);
-				printf("Dano:      %d\n", horik.dano);
-				printf("Defesa:    %d\n", horik.defesa);
-				printf("Agilidade: %d\n\n", horik.agilidade);
+				printf("PV:        %d\n", hernanes.pv);
+				printf("Dano:      %d\n", hernanes.dano);
+				printf("Defesa:    %d\n", hernanes.defesa);
+				printf("Agilidade: %d\n\n", hernanes.agilidade);
 				printf("O que voce fara a seguir?:\n\n");
 				printf("Os seus stats sao:\n");
 				printf("PV:        %d\n", personagens.Pv);
@@ -286,13 +315,13 @@ void criacao(PERSONAGENS personagens)
 				scanf(" %d", &op);
 				switch(op){
 					case 1:
-						if(personagens.gun > horik.defesa){
-						horik.pv = horik.pv - (personagens.gun - horik.defesa);
-						printf("Voce o acertou! os PV do adversario cairam para %d\n\n", horik.pv);
+						if(personagens.gun > hernanes.defesa){
+						hernanes.pv = hernanes.pv - (personagens.gun - hernanes.defesa);
+						printf("Voce o acertou! os PV do adversario cairam para %d\n\n", hernanes.pv);
 						}
-						else if(personagens.gun <= horik.defesa){
-							horik.pv = horik.pv-1;
-							printf("Voce o acertou! os PV do adversario cairam para %d\n\n", borg.pv);
+						else if(personagens.gun <= hernanes.defesa){
+							hernanes.pv = hernanes.pv-1;
+							printf("Voce o acertou! os PV do adversario cairam para %d\n\n", jael.pv);
 						}
 						break;
 						
@@ -330,17 +359,17 @@ void criacao(PERSONAGENS personagens)
 						break;
 				}
 				if(a == 0){
-					if(horik.dano > personagens.prot){
-						personagens.Pv = personagens.Pv - (horik.dano - personagens.prot);
+					if(hernanes.dano > personagens.prot){
+						personagens.Pv = personagens.Pv - (hernanes.dano - personagens.prot);
 						printf("O oponente lhe acertou! Seus PV cairam para %d\n\n", personagens.Pv);
 					}
-					else if(horik.dano <= personagens.prot){
+					else if(hernanes.dano <= personagens.prot){
 						personagens.Pv = personagens.Pv-1;
 						printf("O oponente lhe acertou! Seus PV cairam para %d\n\n", personagens.Pv);
 					}	
 				}
 				else if(a == 1){
-					horik.defesa = horik.defesa * 2;
+					hernanes.defesa = hernanes.defesa * 2;
 					printf("O oponente se defendeu! A defesa dele dobrou!\n\n");
 				}
 				else if(a == 2){
@@ -348,38 +377,38 @@ void criacao(PERSONAGENS personagens)
 					dado2 = rand()%6+1;
 					dado3 = rand()%6+1;
 					
-					if(horik.pv == pv2){
+					if(hernanes.pv == pv2){
 						printf("O oponente usou uma pocao! Mas a vida dele ja esta cheia\n\n");
 					}
-					else if(horik.pv <= 0){
-						horik.pv = 0;
+					else if(hernanes.pv <= 0){
+						hernanes.pv = 0;
 					}
 					else{
-						horik.pv = horik.pv + dado1 + dado2 + dado3;
-						if(horik.pv >= pv2){
-							horik.pv = pv2;
-							printf("O oponente usou uma pocao! Os PV dele subiram para %d\n\n", horik.pv);
+						hernanes.pv = hernanes.pv + dado1 + dado2 + dado3;
+						if(hernanes.pv >= pv2){
+							hernanes.pv = pv2;
+							printf("O oponente usou uma pocao! Os PV dele subiram para %d\n\n", hernanes.pv);
 						}
 						else{
-							printf("O oponente usou uma pocao! Os PV dele subiram para %d\n\n", horik.pv);
+							printf("O oponente usou uma pocao! Os PV dele subiram para %d\n\n", hernanes.pv);
 						}
 					}
 				}
 			}	
-			else if(horik.agilidade > personagens.Agilidade){
+			else if(hernanes.agilidade > personagens.Agilidade){
 				a = rand()%3;
 				if(a == 0){
-					if(horik.dano > personagens.prot){
-						personagens.Pv = personagens.Pv - (horik.dano - personagens.prot);
+					if(hernanes.dano > personagens.prot){
+						personagens.Pv = personagens.Pv - (hernanes.dano - personagens.prot);
 						printf("O oponente lhe acertou! Seus PV cairam para %d\n\n", personagens.Pv);
 					}
-					else if(horik.dano <= personagens.prot){
+					else if(hernanes.dano <= personagens.prot){
 						personagens.Pv = personagens.Pv-1;
 						printf("O oponente lhe acertou! Seus PV cairam para %d\n\n", personagens.Pv);
 					}	
 				}
 				else if(a == 1){
-					horik.defesa = defesa2;
+					hernanes.defesa = defesa2;
 					printf("O oponente se defendeu! A defesa dele dobrou!\n\n");
 				}
 				else if(a == 2){
@@ -387,28 +416,28 @@ void criacao(PERSONAGENS personagens)
 					dado2 = rand()%6+1;
 					dado3 = rand()%6+1;
 					
-					if(horik.pv == pv2){
+					if(hernanes.pv == pv2){
 						printf("O oponente usou uma pocao! Mas a vida dele ja esta cheia\n\n");
 					}
-					else if(horik.pv <= 0){
-						horik.pv = 0;
+					else if(hernanes.pv <= 0){
+						hernanes.pv = 0;
 					}
 					else{
-						horik.pv = horik.pv + dado1 + dado2 + dado3;
-						if(horik.pv >= pv2){
-							horik.pv = pv2;
-							printf("O oponente usou uma pocao! Os PV dele subiram para %d\n\n", horik.pv);
+						hernanes.pv = hernanes.pv + dado1 + dado2 + dado3;
+						if(hernanes.pv >= pv2){
+							hernanes.pv = pv2;
+							printf("O oponente usou uma pocao! Os PV dele subiram para %d\n\n", hernanes.pv);
 						}
 						else{
-							printf("O oponente usou uma pocao! Os PV dele subiram para %d\n\n", horik.pv);
+							printf("O oponente usou uma pocao! Os PV dele subiram para %d\n\n", hernanes.pv);
 						}
 					}
 				}
 				printf("Os stats dele sao:\n");
-				printf("PV:        %d\n", horik.pv);
-				printf("Dano:      %d\n", horik.dano);
-				printf("Defesa:    %d\n", horik.defesa);
-				printf("Agilidade: %d\n\n", horik.agilidade);
+				printf("PV:        %d\n", hernanes.pv);
+				printf("Dano:      %d\n", hernanes.dano);
+				printf("Defesa:    %d\n", hernanes.defesa);
+				printf("Agilidade: %d\n\n", hernanes.agilidade);
 				printf("Os seus stats sao:\n");
 				printf("PV:        %d\n", personagens.Pv);
 				printf("Dano:      %d\n", personagens.gun);
@@ -422,13 +451,13 @@ void criacao(PERSONAGENS personagens)
 				scanf(" %d", &op);
 				switch(op){
 					case 1:
-						if(personagens.gun > horik.defesa){
-						horik.pv = horik.pv - (personagens.gun - horik.defesa);
-						printf("Voce o acertou! os PV do adversario cairam para %d\n\n", horik.pv);
+						if(personagens.gun > hernanes.defesa){
+						hernanes.pv = hernanes.pv - (personagens.gun - hernanes.defesa);
+						printf("Voce o acertou! os PV do adversario cairam para %d\n\n", hernanes.pv);
 						}
-						else if(personagens.gun <= horik.defesa);{
-							horik.pv = horik.pv-1;
-							printf("Voce o acertou! os PV do adversario cairam para %d\n\n", borg.pv);
+						else if(personagens.gun <= hernanes.defesa);{
+							hernanes.pv = hernanes.pv-1;
+							printf("Voce o acertou! os PV do adversario cairam para %d\n\n", jael.pv);
 						}
 						break;
 						
@@ -467,13 +496,13 @@ void criacao(PERSONAGENS personagens)
 						break;
 				}
 		    }
-		}while(personagens.Pv > 0 && horik.pv > 0);
+		}while(personagens.Pv > 0 && hernanes.pv > 0);
 		if(personagens.Pv <= 0)
 		{
 			printf("fim de jogo");
 			exit(0);
 		}
-		else if(horik.pv <= 0)
+		else if(hernanes.pv <= 0)
 		{
 		    int pontos = 5;
 			printf("\nvoce ganhou\n");
@@ -511,9 +540,9 @@ void criacao(PERSONAGENS personagens)
 			printf("\nPontos de vida: %d", personagens.Pv);
 
 			printf("\n\nAgora escolha uma arma: ");
-			printf("\n|A- Espada Longa|B- Macahado Leviantan  |C- Arco de atreus  |\n");
-	        printf("\n|Arma Pesada       |Arma Leve         |Arma Leve         |\n");
-	        printf("\n|Dano: 12           |Dano: 10           |Dano: 8           |\n\n");
+			printf("\n|A- Espada Longa de Sirius |B- Adaga Abissal  |C- Sabre Temporal |\n");
+	        printf("\n|Arma Pesada               |Arma Leve         |Arma Leve         |\n");
+	        printf("\n|Dano: 12                  |Dano: 10          |Dano: 8           |\n\n");
 	        printf("Escolha a opcao desejada: ");
 	        scanf(" %c", &armas);
 	
@@ -526,7 +555,7 @@ void criacao(PERSONAGENS personagens)
 	        dado12 = rand() %12;
             dado12 = dado12 + 1;
 	        personagens.gun = 12 + dado12 + 1.5 * personagens.Forca;
-	        printf("\nVoce escolheu Espada Longa!\n");
+	        printf("\nVoce escolheu Espada Longa de Sirius!\n");
 	        printf("Seu dado foi %d, seu dano eh: %d\n\n", dado12, personagens.gun);
 			break;
 			
@@ -542,7 +571,7 @@ void criacao(PERSONAGENS personagens)
 	
 	            personagens.gun = 10 + dado61 + dado62 + dado4 + personagens.Destreza;
 	
-	            printf("\nVoce escolheu os Machado Leviatan\n");
+	            printf("\nVoce escolheu os Adaga Abissal!\n");
 	            printf("Seus dados foram %d, %d e %d, seu dano eh: %d\n\n", dado61, dado62, dado4, personagens.gun);
 			break;
 			
@@ -558,7 +587,7 @@ void criacao(PERSONAGENS personagens)
 	
 	           personagens.gun = 8 + dado61 + dado62 + dado4 + personagens.Destreza;
 	
-	           printf("\nVoce escolheu arco de atreus!\n");
+	           printf("\nVoce escolheu Sabre Temporal!\n");
 	           printf("Seus dados foram %d, %d e %d, seu dano eh: %d\n\n", dado61, dado62, dado4, personagens.gun);
 			break;
 			
@@ -569,19 +598,19 @@ void criacao(PERSONAGENS personagens)
 	}
 	else if(i == 1)
 	{
-		defesa2 = borg.defesa;
-		pv2 = borg.pv;
-		printf("O Seu oponente eh Jael Borg\n\n");
+		defesa2 = jael.defesa;
+		pv2 = jael.pv;
+		printf("O Seu oponente eh Jael, O cruel\n\n");
 		do{
-			borg.defesa = defesa2;
+			jael.defesa = defesa2;
 			personagens.prot = defesa1;
 			a = rand()%3;
-			if(personagens.Agilidade >= borg.agilidade){
+			if(personagens.Agilidade >= jael.agilidade){
 				printf("Os stats dele sao:\n");
-				printf("PV:        %d\n", borg.pv);
-				printf("Dano:      %d\n", borg.dano);
-				printf("Defesa:    %d\n", borg.defesa);
-				printf("Agilidade: %d\n\n", borg.agilidade);
+				printf("PV:        %d\n", jael.pv);
+				printf("Dano:      %d\n", jael.dano);
+				printf("Defesa:    %d\n", jael.defesa);
+				printf("Agilidade: %d\n\n", jael.agilidade);
 				printf("Os seus stats sao:\n");
 				printf("PV:        %d\n", personagens.Pv);
 				printf("Dano:      %d\n", personagens.gun);
@@ -595,13 +624,13 @@ void criacao(PERSONAGENS personagens)
 				scanf(" %d", &op);
 				switch(op){
 					case 1:
-						if(personagens.gun > borg.defesa){
-						borg.pv = borg.pv - (personagens.gun - borg.defesa);
-						printf("Voce o acertou! os PV do adversario cairam para %d\n\n", borg.pv);
+						if(personagens.gun > jael.defesa){
+						jael.pv = jael.pv - (personagens.gun - jael.defesa);
+						printf("Voce o acertou! os PV do adversario cairam para %d\n\n", jael.pv);
 						}
-						else if(personagens.gun <= borg.defesa){
-							borg.pv = borg.pv-1;
-							printf("Voce o acertou! os PV do adversario cairam para %d\n\n", borg.pv);
+						else if(personagens.gun <= jael.defesa){
+							jael.pv = jael.pv-1;
+							printf("Voce o acertou! os PV do adversario cairam para %d\n\n", jael.pv);
 						}
 						break;
 						
@@ -640,17 +669,17 @@ void criacao(PERSONAGENS personagens)
 						break;
 				}
 				if(a == 0){
-					if(borg.dano > personagens.prot){
-						personagens.Pv = personagens.Pv - (borg.dano - personagens.prot);
+					if(jael.dano > personagens.prot){
+						personagens.Pv = personagens.Pv - (jael.dano - personagens.prot);
 						printf("O oponente lhe acertou! Seus PV cairam para %d\n\n", personagens.Pv);
 					}
-					else if(borg.dano <= personagens.prot){
+					else if(jael.dano <= personagens.prot){
 						personagens.Pv = personagens.Pv-1;
 						printf("O oponente lhe acertou! Seus PV cairam para %d\n\n", personagens.Pv);
 					}	
 				}
 				else if(a == 1){
-					borg.defesa = borg.defesa * 2;
+					jael.defesa = jael.defesa * 2;
 					printf("O oponente se defendeu! A defesa dele dobrou!\n\n");
 				}
 				else if(a == 2){
@@ -658,37 +687,37 @@ void criacao(PERSONAGENS personagens)
 					dado2 = rand()%6+1;
 					dado3 = rand()%6+1;
 					
-					if(borg.pv == pv2){
+					if(jael.pv == pv2){
 						printf("O oponente usou uma pocao! Mas a vida dele ja esta cheia\n\n");
 					}
-					else if(borg.pv <= 0){
-						borg.pv = 0;
+					else if(jael.pv <= 0){
+						jael.pv = 0;
 					}
 					else{
-						borg.pv = borg.pv + dado1 + dado2 + dado3;
-						if(borg.pv >= pv2){
-							borg.pv = pv2;
-							printf("O oponente usou uma pocao! Os PV dele subiram para %d\n\n", borg.pv);
+						jael.pv = jael.pv + dado1 + dado2 + dado3;
+						if(jael.pv >= pv2){
+							jael.pv = pv2;
+							printf("O oponente usou uma pocao! Os PV dele subiram para %d\n\n", jael.pv);
 						}
 						else{
-							printf("O oponente usou uma pocao! Os PV dele subiram para %d\n\n", borg.pv);
+							printf("O oponente usou uma pocao! Os PV dele subiram para %d\n\n", jael.pv);
 						}
 					}
 				}
 			}
-			else if(borg.agilidade > personagens.Agilidade){
+			else if(jael.agilidade > personagens.Agilidade){
 				if(a == 0){
-					if(borg.dano > personagens.prot){
-						personagens.Pv = personagens.Pv - (borg.dano - personagens.prot);
+					if(jael.dano > personagens.prot){
+						personagens.Pv = personagens.Pv - (jael.dano - personagens.prot);
 						printf("O oponente lhe acertou! Seus PV cairam para %d\n\n", personagens.Pv);
 					}
-					else if(borg.dano <= personagens.prot){
+					else if(jael.dano <= personagens.prot){
 						personagens.Pv = personagens.Pv-1;
 						printf("O oponente lhe acertou! Seus PV cairam para %d\n\n", personagens.Pv);
 					}	
 				}
 				else if(a == 1){
-					borg.defesa = borg.defesa * 2;
+					jael.defesa = jael.defesa * 2;
 					printf("O oponente se defendeu! A defesa dele dobrou!\n\n");
 				}
 				else if(a == 2){
@@ -696,28 +725,28 @@ void criacao(PERSONAGENS personagens)
 					dado2 = rand()%6+1;
 					dado3 = rand()%6+1;
 					
-					if(borg.pv == pv2){
+					if(jael.pv == pv2){
 						printf("O oponente usou uma pocao! Mas a vida dele ja esta cheia\n\n");
 					}
-					else if(borg.pv <= 0){
-						borg.pv = 0;
+					else if(jael.pv <= 0){
+						jael.pv = 0;
 					}
 					else{
-						borg.pv = borg.pv + dado1 + dado2 + dado3;
-						if(borg.pv >= pv2){
-							borg.pv = pv2;
-							printf("O oponente usou uma pocao! Os PV dele subiram para %d\n\n", borg.pv);
+						jael.pv = jael.pv + dado1 + dado2 + dado3;
+						if(jael.pv >= pv2){
+							jael.pv = pv2;
+							printf("O oponente usou uma pocao! Os PV dele subiram para %d\n\n", jael.pv);
 						}
 						else{
-							printf("O oponente usou uma pocao! Os PV dele subiram para %d\n\n", borg.pv);
+							printf("O oponente usou uma pocao! Os PV dele subiram para %d\n\n", jael.pv);
 						}
 					}
 				}
 				printf("Os stats dele sao:\n");
-				printf("PV:        %d\n", borg.pv);
-				printf("Dano:      %d\n", borg.dano);
-				printf("Defesa:    %d\n", borg.defesa);
-				printf("Agilidade: %d\n\n", borg.agilidade);
+				printf("PV:        %d\n", jael.pv);
+				printf("Dano:      %d\n", jael.dano);
+				printf("Defesa:    %d\n", jael.defesa);
+				printf("Agilidade: %d\n\n", jael.agilidade);
 				printf("Os seus stats sao:\n");
 				printf("PV:        %d\n", personagens.Pv);
 				printf("Dano:      %d\n", personagens.gun);
@@ -731,13 +760,13 @@ void criacao(PERSONAGENS personagens)
 				scanf(" %d", &op);
 				switch(op){
 					case 1:
-						if(personagens.gun > borg.defesa){
-						borg.pv = borg.pv - (personagens.gun - borg.defesa);
-						printf("Voce o acertou! os PV do adversario cairam para %d\n\n", borg.pv);
+						if(personagens.gun > jael.defesa){
+						jael.pv = jael.pv - (personagens.gun - jael.defesa);
+						printf("Voce o acertou! os PV do adversario cairam para %d\n\n", jael.pv);
 						}
-						else if(personagens.gun <= borg.defesa){
-							borg.pv = borg.pv-1;
-							printf("Voce o acertou! os PV do adversario cairam para %d\n\n", borg.pv);
+						else if(personagens.gun <= jael.defesa){
+							jael.pv = jael.pv-1;
+							printf("Voce o acertou! os PV do adversario cairam para %d\n\n", jael.pv);
 						}
 						break;
 						
@@ -776,13 +805,13 @@ void criacao(PERSONAGENS personagens)
 						break;
 				}
 			}	
-		}while(personagens.Pv > 0 && borg.pv > 0);
+		}while(personagens.Pv > 0 && jael.pv > 0);
 		if(personagens.Pv <= 0)
 		{
 			printf("fim de jogo");
 			exit(0);
 		}
-		else if(borg.pv <= 0)
+		else if(jael.pv <= 0)
 		{
 		    int pontos = 5;
 			printf("\nvoce ganhou\n");
@@ -820,9 +849,9 @@ void criacao(PERSONAGENS personagens)
 			printf("\nPontos de vida: %d", personagens.Pv);
 
 			printf("\n\nAgora escolha uma arma: ");
-			printf("\n|A- Espada Longa|B- Macahado Leviantan  |C- Arco de atreus  |\n");
-	        printf("\n|Arma Pesada       |Arma Leve         |Arma Leve         |\n");
-	        printf("\n|Dano: 12           |Dano: 10           |Dano: 8           |\n\n");
+			printf("\n|A- Espada Longa de Sirius |B- Adaga Abissal   |C- Sabre Temporal  |\n");
+	        printf("\n|Arma Pesada               |Arma Leve          |Arma Leve          |\n");
+	        printf("\n|Dano: 12                  |Dano: 10           |Dano: 8            |\n\n");
 	        printf("Escolha a opcao desejada: ");
 	        scanf(" %c", &armas);
 	
@@ -835,7 +864,7 @@ void criacao(PERSONAGENS personagens)
 	        dado12 = rand() %12;
             dado12 = dado12 + 1;
 	        personagens.gun = 12 + dado12 + 1.5 * personagens.Forca;
-	        printf("\nVoce escolheu Espada Longa!\n");
+	        printf("\nVoce escolheu Espada Longa de Sirius!\n");
 	        printf("Seu dado foi %d, seu dano eh: %d\n\n", dado12, personagens.gun);
 			break;
 			
@@ -851,7 +880,7 @@ void criacao(PERSONAGENS personagens)
 	
 	            personagens.gun = 10 + dado61 + dado62 + dado4 + personagens.Destreza;
 	
-	            printf("\nVoce escolheu os Machado Leviatan\n");
+	            printf("\nVoce escolheu os Adaga Abissal!\n");
 	            printf("Seus dados foram %d, %d e %d, seu dano eh: %d\n\n", dado61, dado62, dado4, personagens.gun);
 			break;
 			
@@ -867,7 +896,7 @@ void criacao(PERSONAGENS personagens)
 	
 	           personagens.gun = 8 + dado61 + dado62 + dado4 + personagens.Destreza;
 	
-	           printf("\nVoce escolheu arco de atreus!\n");
+	           printf("\nVoce escolheu Sabre Temporal!\n");
 	           printf("Seus dados foram %d, %d e %d, seu dano eh: %d\n\n", dado61, dado62, dado4, personagens.gun);
 			break;
 			
@@ -878,19 +907,19 @@ void criacao(PERSONAGENS personagens)
 	}	
 	else if(i == 2)
 	{
-		defesa2 = aelle.defesa;
-		pv2 = aelle.pv;
-		printf("O seu oponente eh Aelle\n\n");
+		defesa2 = portaand.defesa;
+		pv2 = portaand.pv;
+		printf("O seu oponente eh Porta And\n\n");
 		do{
-			aelle.defesa = defesa2;
+			portaand.defesa = defesa2;
 			personagens.prot = defesa1;			
 			a = rand()%3;
-			if(personagens.Agilidade >= aelle.agilidade){
+			if(personagens.Agilidade >= portaand.agilidade){
 				printf("Os stats dele sao:\n");
-				printf("PV:        %d\n", aelle.pv);
-				printf("Dano:      %d\n", aelle.dano);
-				printf("Defesa:    %d\n", aelle.defesa);
-				printf("Agilidade: %d\n\n", aelle.agilidade);
+				printf("PV:        %d\n", portaand.pv);
+				printf("Dano:      %d\n", portaand.dano);
+				printf("Defesa:    %d\n", portaand.defesa);
+				printf("Agilidade: %d\n\n", portaand.agilidade);
 				printf("Os seus stats sao:\n");
 				printf("PV:        %d\n", personagens.Pv);
 				printf("Dano:      %d\n", personagens.gun);
@@ -904,13 +933,13 @@ void criacao(PERSONAGENS personagens)
 				scanf(" %d", &op);
 				switch(op){
 					case 1:
-						if(personagens.gun > aelle.defesa){
-						aelle.pv = aelle.pv - (personagens.gun - aelle.defesa);
-						printf("Voce o acertou! os PV do adversario cairam para %d\n\n", aelle.pv);
+						if(personagens.gun > portaand.defesa){
+						portaand.pv = portaand.pv - (personagens.gun - portaand.defesa);
+						printf("Voce o acertou! os PV do adversario cairam para %d\n\n", portaand.pv);
 						}
-						else if(personagens.gun <= aelle.defesa){
-							aelle.pv = aelle.pv-1;
-							printf("Voce o acertou! os PV do adversario cairam para %d\n\n", borg.pv);
+						else if(personagens.gun <= portaand.defesa){
+							portaand.pv = portaand.pv-1;
+							printf("Voce o acertou! os PV do adversario cairam para %d\n\n", jael.pv);
 						}
 						break;
 						
@@ -949,17 +978,17 @@ void criacao(PERSONAGENS personagens)
 						break;
 				}
 				if(a == 0){
-					if(aelle.dano > personagens.prot){
-						personagens.Pv = personagens.Pv - (aelle.dano - personagens.prot);
+					if(portaand.dano > personagens.prot){
+						personagens.Pv = personagens.Pv - (portaand.dano - personagens.prot);
 						printf("O oponente lhe acertou! Seus PV cairam para %d\n\n", personagens.Pv);
 					}
-					else if(aelle.dano <= personagens.prot){
+					else if(portaand.dano <= personagens.prot){
 						personagens.Pv = personagens.Pv-1;
 						printf("O oponente lhe acertou! Seus PV cairam para %d\n\n", personagens.Pv);
 					}	
 				}
 				else if(a == 1){
-					aelle.defesa = aelle.defesa * 2;
+					portaand.defesa = portaand.defesa * 2;
 					printf("O oponente se defendeu! A defesa dele dobrou!\n\n");
 				}
 				else if(a == 2){
@@ -967,38 +996,38 @@ void criacao(PERSONAGENS personagens)
 					dado2 = rand()%6+1;
 					dado3 = rand()%6+1;
 					
-					if(aelle.pv == pv2){
+					if(portaand.pv == pv2){
 						printf("O oponente usou uma pocao! Mas a vida dele ja esta cheia\n\n");
 					}
-					else if(aelle.pv <= 0){
-						borg.pv = 0;
+					else if(portaand.pv <= 0){
+						jael.pv = 0;
 					}
 					else{
-						aelle.pv = aelle.pv + dado1 + dado2 + dado3;
-						if(aelle.pv >= pv2){
-							aelle.pv = pv2;
-							printf("O oponente usou uma pocao! Os PV dele subiram para %d\n\n", aelle.pv);
+						portaand.pv = portaand.pv + dado1 + dado2 + dado3;
+						if(portaand.pv >= pv2){
+							portaand.pv = pv2;
+							printf("O oponente usou uma pocao! Os PV dele subiram para %d\n\n", portaand.pv);
 						}
 						else{
-							printf("O oponente usou uma pocao! Os PV dele subiram para %d\n\n", aelle.pv);
+							printf("O oponente usou uma pocao! Os PV dele subiram para %d\n\n", portaand.pv);
 						}
 					}
 				}
 			}
-			else if(aelle.agilidade > personagens.Agilidade){
+			else if(portaand.agilidade > personagens.Agilidade){
 				a = rand()%3;
 				if(a == 0){
-					if(aelle.dano > personagens.prot){
-						personagens.Pv = personagens.Pv - (aelle.dano - personagens.prot);
+					if(portaand.dano > personagens.prot){
+						personagens.Pv = personagens.Pv - (portaand.dano - personagens.prot);
 						printf("O oponente lhe acertou! Seus PV cairam para %d\n\n", personagens.Pv);
 					}
-					else if(aelle.dano <= personagens.prot){
+					else if(portaand.dano <= personagens.prot){
 						personagens.Pv = personagens.Pv-1;
 						printf("O oponente lhe acertou! Seus PV cairam para %d\n\n", personagens.Pv);
 					}	
 				}
 				else if(a == 1){
-					aelle.defesa = aelle.defesa * 2;
+					portaand.defesa = portaand.defesa * 2;
 					printf("O oponente se defendeu! A defesa dele dobrou!\n\n");
 				}
 				else if(a == 2){
@@ -1006,28 +1035,28 @@ void criacao(PERSONAGENS personagens)
 					dado2 = rand()%6+1;
 					dado3 = rand()%6+1;
 					
-					if(aelle.pv == pv2){
+					if(portaand.pv == pv2){
 						printf("O oponente usou uma pocao! Mas a vida dele ja esta cheia\n\n");
 					}
-					else if(aelle.pv <= 0){
-						borg.pv = 0;
+					else if(portaand.pv <= 0){
+						jael.pv = 0;
 					}
 					else{
-						aelle.pv = aelle.pv + dado1 + dado2 + dado3;
-						if(aelle.pv >= pv2){
-							aelle.pv = pv2;
-							printf("O oponente usou uma pocao! Os PV dele subiram para %d\n\n", aelle.pv);
+						portaand.pv = portaand.pv + dado1 + dado2 + dado3;
+						if(portaand.pv >= pv2){
+							portaand.pv = pv2;
+							printf("O oponente usou uma pocao! Os PV dele subiram para %d\n\n", portaand.pv);
 						}
 						else{
-							printf("O oponente usou uma pocao! Os PV dele subiram para %d\n\n", aelle.pv);
+							printf("O oponente usou uma pocao! Os PV dele subiram para %d\n\n", portaand.pv);
 						}
 					}
 				}
 				printf("Os stats dele sao:\n");
-				printf("PV:        %d\n", aelle.pv);
-				printf("Dano:      %d\n", aelle.dano);
-				printf("Defesa:    %d\n", aelle.defesa);
-				printf("Agilidade: %d\n\n", aelle.agilidade);
+				printf("PV:        %d\n", portaand.pv);
+				printf("Dano:      %d\n", portaand.dano);
+				printf("Defesa:    %d\n", portaand.defesa);
+				printf("Agilidade: %d\n\n", portaand.agilidade);
 				printf("Os seus stats sao:\n");
 				printf("PV:        %d\n", personagens.Pv);
 				printf("Dano:      %d\n", personagens.gun);
@@ -1041,13 +1070,13 @@ void criacao(PERSONAGENS personagens)
 				scanf(" %d", &op);
 				switch(op){
 					case 1:
-						if(personagens.gun > aelle.defesa){
-						aelle.pv = aelle.pv - (personagens.gun - aelle.defesa);
-						printf("Voce o acertou! os PV do adversario cairam para %d\n\n", aelle.pv);
+						if(personagens.gun > portaand.defesa){
+						portaand.pv = portaand.pv - (personagens.gun - portaand.defesa);
+						printf("Voce o acertou! os PV do adversario cairam para %d\n\n", portaand.pv);
 						}
-						else if(personagens.gun <= aelle.defesa){
-							aelle.pv = aelle.pv-1;
-							printf("Voce o acertou! os PV do adversario cairam para %d\n\n", aelle.pv);
+						else if(personagens.gun <= portaand.defesa){
+							portaand.pv = portaand.pv-1;
+							printf("Voce o acertou! os PV do adversario cairam para %d\n\n", portaand.pv);
 						}
 						break;
 						
@@ -1086,13 +1115,13 @@ void criacao(PERSONAGENS personagens)
 						break;
 				}
 		    }
-		}while(personagens.Pv > 0 && aelle.pv > 0);
+		}while(personagens.Pv > 0 && portaand.pv > 0);
 		if(personagens.Pv <= 0)
 		{
 			printf("fim de jogo");
 			exit(0);
 		}	
-		else if(aelle.pv <= 0)
+		else if(portaand.pv <= 0)
 		{
 		    int pontos = 5;
 			printf("\nvoce ganhou\n");
@@ -1130,9 +1159,9 @@ void criacao(PERSONAGENS personagens)
 			printf("\nPontos de vida: %d", personagens.Pv);
 
 			printf("\n\nAgora escolha uma arma: ");
-			printf("\n|A- Espada Longa|B- Macahado Leviantan  |C- Arco de atreus  |\n");
-	        printf("\n|Arma Pesada       |Arma Leve         |Arma Leve         |\n");
-	        printf("\n|Dano: 12           |Dano: 10           |Dano: 8           |\n\n");
+			printf("\n|A- Espada Longa    |B- Macahado Leviantan  |C- Arco de atreus  |\n");
+	        printf("\n|Arma Pesada        |Arma Leve              |Arma Leve          |\n");
+	        printf("\n|Dano: 12           |Dano: 10               |Dano: 8            |\n\n");
 	        printf("Escolha a opcao desejada: ");
 	        scanf(" %c", &armas);
 	
@@ -1145,7 +1174,7 @@ void criacao(PERSONAGENS personagens)
 	        dado12 = rand() %12;
             dado12 = dado12 + 1;
 	        personagens.gun = 12 + dado12 + 1.5 * personagens.Forca;
-	        printf("\nVoce escolheu Espada Longa!\n");
+	        printf("\nVoce escolheu Espada Longa de Sirius!\n");
 	        printf("Seu dado foi %d, seu dano eh: %d\n\n", dado12, personagens.gun);
 			break;
 			
@@ -1161,7 +1190,7 @@ void criacao(PERSONAGENS personagens)
 	
 	            personagens.gun = 10 + dado61 + dado62 + dado4 + personagens.Destreza;
 	
-	            printf("\nVoce escolheu os Machado Leviatan\n");
+	            printf("\nVoce escolheu os Adaga Abissal!\n");
 	            printf("Seus dados foram %d, %d e %d, seu dano eh: %d\n\n", dado61, dado62, dado4, personagens.gun);
 			break;
 			
@@ -1177,7 +1206,7 @@ void criacao(PERSONAGENS personagens)
 	
 	           personagens.gun = 8 + dado61 + dado62 + dado4 + personagens.Destreza;
 	
-	           printf("\nVoce escolheu arco de atreus!\n");
+	           printf("\nVoce escolheu Sabre Temporal!\n");
 	           printf("Seus dados foram %d, %d e %d, seu dano eh: %d\n\n", dado61, dado62, dado4, personagens.gun);
 			break;
 			
@@ -1187,22 +1216,22 @@ void criacao(PERSONAGENS personagens)
 		}
 	}
 	
-	i = rand()%2;
+	i = 0;
 	
 	if(i == 0){
-		defesa2 = rollo.defesa;
-		pv2 = rollo.pv;
-		printf("O Seu oponente eh Rollo\n\n");
+		defesa2 = clear.defesa;
+		pv2 = clear.pv;
+		printf("O Seu oponente eh Clear Man\n\n");
 		do{
-			rollo.defesa = defesa2;
+			clear.defesa = defesa2;
 			personagens.prot = defesa1;
 			a = rand()%3;
-			if(personagens.Agilidade >= rollo.agilidade){
+			if(personagens.Agilidade >= clear.agilidade){
 				printf("Os stats dele sao:\n");
-				printf("PV:        %d\n", rollo.pv);
-				printf("Dano:      %d\n", rollo.dano);
-				printf("Defesa:    %d\n", rollo.defesa);
-				printf("Agilidade: %d\n\n", rollo.agilidade);
+				printf("PV:        %d\n", clear.pv);
+				printf("Dano:      %d\n", clear.dano);
+				printf("Defesa:    %d\n", clear.defesa);
+				printf("Agilidade: %d\n\n", clear.agilidade);
 				printf("O que voce fara a seguir?:\n\n");
 				printf("Os seus stats sao:\n");
 				printf("PV:        %d\n", personagens.Pv);
@@ -1216,13 +1245,13 @@ void criacao(PERSONAGENS personagens)
 				scanf(" %d", &op);
 				switch(op){
 					case 1:
-						if(personagens.gun > rollo.defesa){
-						rollo.pv = rollo.pv - (personagens.gun - rollo.defesa);
-						printf("Voce o acertou! os PV do adversario cairam para %d\n\n", rollo.pv);
+						if(personagens.gun > clear.defesa){
+						clear.pv = clear.pv - (personagens.gun - clear.defesa);
+						printf("Voce o acertou! os PV do adversario cairam para %d\n\n", clear.pv);
 						}
-						else if(personagens.gun <= horik.defesa){
-							rollo.pv = rollo.pv-1;
-							printf("Voce o acertou! os PV do adversario cairam para %d\n\n", rollo.pv);
+						else if(personagens.gun <= hernanes.defesa){
+							clear.pv = clear.pv-1;
+							printf("Voce o acertou! os PV do adversario cairam para %d\n\n", clear.pv);
 						}
 						break;
 						
@@ -1260,17 +1289,17 @@ void criacao(PERSONAGENS personagens)
 						break;
 				}
 				if(a == 0){
-					if(rollo.dano > personagens.prot){
-						personagens.Pv = personagens.Pv - (rollo.dano - personagens.prot);
+					if(clear.dano > personagens.prot){
+						personagens.Pv = personagens.Pv - (clear.dano - personagens.prot);
 						printf("O oponente lhe acertou! Seus PV cairam para %d\n\n", personagens.Pv);
 					}
-					else if(rollo.dano <= personagens.prot){
+					else if(clear.dano <= personagens.prot){
 						personagens.Pv = personagens.Pv-1;
 						printf("O oponente lhe acertou! Seus PV cairam para %d\n\n", personagens.Pv);
 					}	
 				}
 				else if(a == 1){
-					rollo.defesa = rollo.defesa * 2;
+					clear.defesa = clear.defesa * 2;
 					printf("O oponente se defendeu! A defesa dele dobrou!\n\n");
 				}
 				else if(a == 2){
@@ -1278,38 +1307,38 @@ void criacao(PERSONAGENS personagens)
 					dado2 = rand()%6+1;
 					dado3 = rand()%6+1;
 					
-					if(rollo.pv == pv2){
+					if(clear.pv == pv2){
 						printf("O oponente usou uma pocao! Mas a vida dele ja esta cheia\n\n");
 					}
-					else if(rollo.pv <= 0){
-						horik.pv = 0;
+					else if(clear.pv <= 0){
+						hernanes.pv = 0;
 					}
 					else{
-						rollo.pv = rollo.pv + dado1 + dado2 + dado3;
-						if(rollo.pv >= pv2){
-							rollo.pv = pv2;
-							printf("O oponente usou uma pocao! Os PV dele subiram para %d\n\n", rollo.pv);
+						clear.pv = clear.pv + dado1 + dado2 + dado3;
+						if(clear.pv >= pv2){
+							clear.pv = pv2;
+							printf("O oponente usou uma pocao! Os PV dele subiram para %d\n\n", clear.pv);
 						}
 						else{
-							printf("O oponente usou uma pocao! Os PV dele subiram para %d\n\n", rollo.pv);
+							printf("O oponente usou uma pocao! Os PV dele subiram para %d\n\n", clear.pv);
 						}
 					}
 				}
 			}	
-			else if(rollo.agilidade > personagens.Agilidade){
+			else if(clear.agilidade > personagens.Agilidade){
 				a = rand()%3;
 				if(a == 0){
-					if(rollo.dano > personagens.prot){
-						personagens.Pv = personagens.Pv - (rollo.dano - personagens.prot);
+					if(clear.dano > personagens.prot){
+						personagens.Pv = personagens.Pv - (clear.dano - personagens.prot);
 						printf("O oponente lhe acertou! Seus PV cairam para %d\n\n", personagens.Pv);
 					}
-					else if(rollo.dano <= personagens.prot){
+					else if(clear.dano <= personagens.prot){
 						personagens.Pv = personagens.Pv-1;
 						printf("O oponente lhe acertou! Seus PV cairam para %d\n\n", personagens.Pv);
 					}	
 				}
 				else if(a == 1){
-					rollo.defesa = defesa2;
+					clear.defesa = defesa2;
 					printf("O oponente se defendeu! A defesa dele dobrou!\n\n");
 				}
 				else if(a == 2){
@@ -1317,28 +1346,28 @@ void criacao(PERSONAGENS personagens)
 					dado2 = rand()%6+1;
 					dado3 = rand()%6+1;
 					
-					if(rollo.pv == pv2){
+					if(clear.pv == pv2){
 						printf("O oponente usou uma pocao! Mas a vida dele ja esta cheia\n\n");
 					}
-					else if(rollo.pv <= 0){
-						rollo.pv = 0;
+					else if(clear.pv <= 0){
+						clear.pv = 0;
 					}
 					else{
-						rollo.pv = rollo.pv + dado1 + dado2 + dado3;
-						if(rollo.pv >= pv2){
-							rollo.pv = pv2;
-							printf("O oponente usou uma pocao! Os PV dele subiram para %d\n\n", rollo.pv);
+						clear.pv = clear.pv + dado1 + dado2 + dado3;
+						if(clear.pv >= pv2){
+							clear.pv = pv2;
+							printf("O oponente usou uma pocao! Os PV dele subiram para %d\n\n", clear.pv);
 						}
 						else{
-							printf("O oponente usou uma pocao! Os PV dele subiram para %d\n\n", rollo.pv);
+							printf("O oponente usou uma pocao! Os PV dele subiram para %d\n\n", clear.pv);
 						}
 					}
 				}
 				printf("Os stats dele sao:\n");
-				printf("PV:        %d\n", rollo.pv);
-				printf("Dano:      %d\n", rollo.dano);
-				printf("Defesa:    %d\n", rollo.defesa);
-				printf("Agilidade: %d\n\n", rollo.agilidade);
+				printf("PV:        %d\n", clear.pv);
+				printf("Dano:      %d\n", clear.dano);
+				printf("Defesa:    %d\n", clear.defesa);
+				printf("Agilidade: %d\n\n", clear.agilidade);
 				printf("Os seus stats sao:\n");
 				printf("PV:        %d\n", personagens.Pv);
 				printf("Dano:      %d\n", personagens.gun);
@@ -1352,13 +1381,13 @@ void criacao(PERSONAGENS personagens)
 				scanf(" %d", &op);
 				switch(op){
 					case 1:
-						if(personagens.gun > rollo.defesa){
-						rollo.pv = rollo.pv - (personagens.gun - rollo.defesa);
-						printf("Voce o acertou! os PV do adversario cairam para %d\n\n", rollo.pv);
+						if(personagens.gun > clear.defesa){
+						clear.pv = clear.pv - (personagens.gun - clear.defesa);
+						printf("Voce o acertou! os PV do adversario cairam para %d\n\n", clear.pv);
 						}
-						else if(personagens.gun <= rollo.defesa);{
-							horik.pv = horik.pv-1;
-							printf("Voce o acertou! os PV do adversario cairam para %d\n\n", rollo.pv);
+						else if(personagens.gun <= clear.defesa);{
+							hernanes.pv = hernanes.pv-1;
+							printf("Voce o acertou! os PV do adversario cairam para %d\n\n", clear.pv);
 						}
 						break;
 						
@@ -1397,13 +1426,13 @@ void criacao(PERSONAGENS personagens)
 						break;
 				}
 		    }
-		}while(personagens.Pv > 0 && rollo.pv > 0);
+		}while(personagens.Pv > 0 && clear.pv > 0);
 		if(personagens.Pv <= 0)
 		{
 			printf("fim de jogo");
 			exit(0);
 		}
-		else if(rollo.pv <= 0)
+		else if(clear.pv <= 0)
 		{
 		    int pontos = 10;
 			printf("\nvoce ganhou\n");
@@ -1439,22 +1468,52 @@ void criacao(PERSONAGENS personagens)
 			printf("\nAgilidade: %d", personagens.Agilidade);
 			printf("\nConstituicao: %d", personagens.constituicao);
 			printf("\nPontos de vida: %d", personagens.Pv);
+			printf("\n(Calculo da defesa: Defesa da armadura + 1,5 * constituicao)\n\n");
+			printf("|A- Armadura de Dima |B- Protecao de Cronos   |C- Armadura de Malha   |\n");
+			printf("|Defesa: 14          |Defesa: 10              |Defesa: 6              |\n\n");
+			printf("Escolha a opcao desejada: ");
+			scanf(" %c", &armour);
+	
+			switch (armour)
+			{
+				case 'A':
+				case 'a':
+					personagens.prot = 14 + 1.5 * personagens.constituicao;
+			        printf("\nVoce escolheu a armadura de Dima!\n");
+			        printf("Sua defesa total eh %d\n\n", personagens.prot);
+				break;
+				
+				case 'b':
+				case 'B':
+					personagens.prot = 10 + 1.5 * personagens.constituicao;
+			        printf("\nVoce escolheu a Protecao de Cronos!\n");
+			        printf("Sua defesa total eh %d\n\n", personagens.prot);
+				break;
+				
+				case 'c':
+				case 'C':
+					personagens.prot = 6 + 1.5 * personagens.constituicao;
+			        printf("\nVoce escolheu a Armadura de Malha!\n");
+			        printf("Sua defesa total eh %d\n\n", personagens.prot);
+				break;	
+			}
 		}
+
 	}
 	else if(i == 1){
-		defesa2 = ecbert.defesa;
-		pv2 = ecbert.pv;
-		printf("O Seu oponente eh Ecbert\n\n");
+		defesa2 = caua.defesa;
+		pv2 = caua.pv;
+		printf("O Seu oponente eh Caua, O guerreiro\n\n");
 		do{
-			ecbert.defesa = defesa2;
+			caua.defesa = defesa2;
 			personagens.prot = defesa1;
 			a = rand()%3;
-			if(personagens.Agilidade >= ecbert.agilidade){
+			if(personagens.Agilidade >= caua.agilidade){
 				printf("Os stats dele sao:\n");
-				printf("PV:        %d\n", ecbert.pv);
-				printf("Dano:      %d\n", ecbert.dano);
-				printf("Defesa:    %d\n", ecbert.defesa);
-				printf("Agilidade: %d\n\n", ecbert.agilidade);
+				printf("PV:        %d\n", caua.pv);
+				printf("Dano:      %d\n", caua.dano);
+				printf("Defesa:    %d\n", caua.defesa);
+				printf("Agilidade: %d\n\n", caua.agilidade);
 				printf("O que voce fara a seguir?:\n\n");
 				printf("Os seus stats sao:\n");
 				printf("PV:        %d\n", personagens.Pv);
@@ -1468,13 +1527,13 @@ void criacao(PERSONAGENS personagens)
 				scanf(" %d", &op);
 				switch(op){
 					case 1:
-						if(personagens.gun > ecbert.defesa){
-						ecbert.pv = ecbert.pv - (personagens.gun - ecbert.defesa);
-						printf("Voce o acertou! os PV do adversario cairam para %d\n\n", ecbert.pv);
+						if(personagens.gun > caua.defesa){
+						caua.pv = caua.pv - (personagens.gun - caua.defesa);
+						printf("Voce o acertou! os PV do adversario cairam para %d\n\n", caua.pv);
 						}
-						else if(personagens.gun <= ecbert.defesa){
-							ecbert.pv = ecbert.pv-1;
-							printf("Voce o acertou! os PV do adversario cairam para %d\n\n", ecbert.pv);
+						else if(personagens.gun <= caua.defesa){
+							caua.pv = caua.pv-1;
+							printf("Voce o acertou! os PV do adversario cairam para %d\n\n", caua.pv);
 						}
 						break;
 						
@@ -1512,17 +1571,17 @@ void criacao(PERSONAGENS personagens)
 						break;
 				}
 				if(a == 0){
-					if(ecbert.dano > personagens.prot){
-						personagens.Pv = personagens.Pv - (ecbert.dano - personagens.prot);
+					if(caua.dano > personagens.prot){
+						personagens.Pv = personagens.Pv - (caua.dano - personagens.prot);
 						printf("O oponente lhe acertou! Seus PV cairam para %d\n\n", personagens.Pv);
 					}
-					else if(ecbert.dano <= personagens.prot){
+					else if(caua.dano <= personagens.prot){
 						personagens.Pv = personagens.Pv-1;
 						printf("O oponente lhe acertou! Seus PV cairam para %d\n\n", personagens.Pv);
 					}	
 				}
 				else if(a == 1){
-					ecbert.defesa = ecbert.defesa * 2;
+					caua.defesa = caua.defesa * 2;
 					printf("O oponente se defendeu! A defesa dele dobrou!\n\n");
 				}
 				else if(a == 2){
@@ -1530,38 +1589,38 @@ void criacao(PERSONAGENS personagens)
 					dado2 = rand()%6+1;
 					dado3 = rand()%6+1;
 					
-					if(ecbert.pv == pv2){
+					if(caua.pv == pv2){
 						printf("O oponente usou uma pocao! Mas a vida dele ja esta cheia\n\n");
 					}
-					else if(ecbert.pv <= 0){
-						ecbert.pv = 0;
+					else if(caua.pv <= 0){
+						caua.pv = 0;
 					}
 					else{
-						ecbert.pv = ecbert.pv + dado1 + dado2 + dado3;
-						if(ecbert.pv >= pv2){
-							ecbert.pv = pv2;
-							printf("O oponente usou uma pocao! Os PV dele subiram para %d\n\n", ecbert.pv);
+						caua.pv = caua.pv + dado1 + dado2 + dado3;
+						if(caua.pv >= pv2){
+							caua.pv = pv2;
+							printf("O oponente usou uma pocao! Os PV dele subiram para %d\n\n", caua.pv);
 						}
 						else{
-							printf("O oponente usou uma pocao! Os PV dele subiram para %d\n\n", ecbert.pv);
+							printf("O oponente usou uma pocao! Os PV dele subiram para %d\n\n", caua.pv);
 						}
 					}
 				}
 			}	
-			else if(ecbert.agilidade > personagens.Agilidade){
+			else if(caua.agilidade > personagens.Agilidade){
 				a = rand()%3;
 				if(a == 0){
-					if(ecbert.dano > personagens.prot){
-						personagens.Pv = personagens.Pv - (ecbert.dano - personagens.prot);
+					if(caua.dano > personagens.prot){
+						personagens.Pv = personagens.Pv - (caua.dano - personagens.prot);
 						printf("O oponente lhe acertou! Seus PV cairam para %d\n\n", personagens.Pv);
 					}
-					else if(ecbert.dano <= personagens.prot){
+					else if(caua.dano <= personagens.prot){
 						personagens.Pv = personagens.Pv-1;
 						printf("O oponente lhe acertou! Seus PV cairam para %d\n\n", personagens.Pv);
 					}	
 				}
 				else if(a == 1){
-					ecbert.defesa = defesa2;
+					caua.defesa = defesa2;
 					printf("O oponente se defendeu! A defesa dele dobrou!\n\n");
 				}
 				else if(a == 2){
@@ -1569,28 +1628,28 @@ void criacao(PERSONAGENS personagens)
 					dado2 = rand()%6+1;
 					dado3 = rand()%6+1;
 					
-					if(ecbert.pv == pv2){
+					if(caua.pv == pv2){
 						printf("O oponente usou uma pocao! Mas a vida dele ja esta cheia\n\n");
 					}
-					else if(ecbert.pv <= 0){
-						ecbert.pv = 0;
+					else if(caua.pv <= 0){
+						caua.pv = 0;
 					}
 					else{
-						ecbert.pv = ecbert.pv + dado1 + dado2 + dado3;
-						if(ecbert.pv >= pv2){
-							ecbert.pv = pv2;
-							printf("O oponente usou uma pocao! Os PV dele subiram para %d\n\n", ecbert.pv);
+						caua.pv = caua.pv + dado1 + dado2 + dado3;
+						if(caua.pv >= pv2){
+							caua.pv = pv2;
+							printf("O oponente usou uma pocao! Os PV dele subiram para %d\n\n", caua.pv);
 						}
 						else{
-							printf("O oponente usou uma pocao! Os PV dele subiram para %d\n\n", ecbert.pv);
+							printf("O oponente usou uma pocao! Os PV dele subiram para %d\n\n", caua.pv);
 						}
 					}
 				}
 				printf("Os stats dele sao:\n");
-				printf("PV:        %d\n", ecbert.pv);
-				printf("Dano:      %d\n", ecbert.dano);
-				printf("Defesa:    %d\n", ecbert.defesa);
-				printf("Agilidade: %d\n\n", ecbert.agilidade);
+				printf("PV:        %d\n", caua.pv);
+				printf("Dano:      %d\n", caua.dano);
+				printf("Defesa:    %d\n", caua.defesa);
+				printf("Agilidade: %d\n\n", caua.agilidade);
 				printf("Os seus stats sao:\n");
 				printf("PV:        %d\n", personagens.Pv);
 				printf("Dano:      %d\n", personagens.gun);
@@ -1604,13 +1663,13 @@ void criacao(PERSONAGENS personagens)
 				scanf(" %d", &op);
 				switch(op){
 					case 1:
-						if(personagens.gun > horik.defesa){
-						ecbert.pv = ecbert.pv - (personagens.gun - ecbert.defesa);
-						printf("Voce o acertou! os PV do adversario cairam para %d\n\n", ecbert.pv);
+						if(personagens.gun > hernanes.defesa){
+						caua.pv = caua.pv - (personagens.gun - caua.defesa);
+						printf("Voce o acertou! os PV do adversario cairam para %d\n\n", caua.pv);
 						}
-						else if(personagens.gun <= ecbert.defesa);{
-							ecbert.pv = ecbert.pv-1;
-							printf("Voce o acertou! os PV do adversario cairam para %d\n\n", ecbert.pv);
+						else if(personagens.gun <= caua.defesa);{
+							caua.pv = caua.pv-1;
+							printf("Voce o acertou! os PV do adversario cairam para %d\n\n", caua.pv);
 						}
 						break;
 						
@@ -1649,13 +1708,13 @@ void criacao(PERSONAGENS personagens)
 						break;
 				}
 		    }
-		}while(personagens.Pv > 0 && ecbert.pv > 0);
+		}while(personagens.Pv > 0 && caua.pv > 0);
 		if(personagens.Pv <= 0)
 		{
 			printf("fim de jogo");
 			exit(0);
 		}
-		else if(ecbert.pv <= 0)
+		else if(caua.pv <= 0)
 		{
 		    int pontos = 10;
 			printf("\nvoce ganhou\n");
@@ -1691,21 +1750,56 @@ void criacao(PERSONAGENS personagens)
 			printf("\nAgilidade: %d", personagens.Agilidade);
 			printf("\nConstituicao: %d", personagens.constituicao);
 			printf("\nPontos de vida: %d", personagens.Pv);
+			printf("\nForca: %d", personagens.Forca);
+			printf("\nDestreza: %d", personagens.Destreza);
+			printf("\nAgilidade: %d", personagens.Agilidade);
+			printf("\nConstituicao: %d", personagens.constituicao);
+			printf("\nPontos de vida: %d", personagens.Pv);
+			printf("\n(Calculo da defesa: Defesa da armadura + 1,5 * constituicao)\n\n");
+			printf("|A- Armadura de Dima |B- Protecao de Cronos   |C- Armadura de Malha   |\n");
+			printf("|Defesa: 14          |Defesa: 10              |Defesa: 6              |\n\n");
+			printf("Escolha a opcao desejada: ");
+			scanf(" %c", &armour);
+	
+	switch (armour)
+	{
+		case 'A':
+		case 'a':
+			personagens.prot = 14 + 1.5 * personagens.constituicao;
+	        printf("\nVoce escolheu a armadura de Dima!\n");
+	        printf("Sua defesa total eh %d\n\n", personagens.prot);
+		break;
+		
+		case 'b':
+		case 'B':
+			personagens.prot = 10 + 1.5 * personagens.constituicao;
+	        printf("\nVoce escolheu a Protecao de Cronos!\n");
+	        printf("Sua defesa total eh %d\n\n", personagens.prot);
+		break;
+		
+		case 'c':
+		case 'C':
+			personagens.prot = 6 + 1.5 * personagens.constituicao;
+	        printf("\nVoce escolheu a Armadura de Malha!\n");
+	        printf("Sua defesa total eh %d\n\n", personagens.prot);
+		break;	
+	}
 		}
 	}
-	defesa2 = ragnar.defesa;
-	pv2 = ragnar.pv;
-	printf("\nO Seu oponente eh Ragnar Lothbrok\n\n");
+	defesa1 = personagens.prot;
+	defesa2 = boi.defesa;
+	pv2 = boi.pv;
+	printf("\nO Seu oponente eh Aloisio, O boi bandido\n\n");
 	do{
-		ragnar.defesa = defesa2;
+		boi.defesa = defesa2;
 		personagens.prot = defesa1;
 		a = rand()%3;
-		if(personagens.Agilidade >= ragnar.agilidade){
+		if(personagens.Agilidade >= boi.agilidade){
 			printf("Os stats dele sao:\n");
-			printf("PV:        %d\n", ragnar.pv);
-			printf("Dano:      %d\n", ragnar.dano);
-			printf("Defesa:    %d\n", ragnar.defesa);
-			printf("Agilidade: %d\n\n", ragnar.agilidade);
+			printf("PV:        %d\n", boi.pv);
+			printf("Dano:      %d\n", boi.dano);
+			printf("Defesa:    %d\n", boi.defesa);
+			printf("Agilidade: %d\n\n", boi.agilidade);
 			printf("O que voce fara a seguir?:\n\n");
 			printf("Os seus stats sao:\n");
 			printf("PV:        %d\n", personagens.Pv);
@@ -1719,13 +1813,13 @@ void criacao(PERSONAGENS personagens)
 			scanf(" %d", &op);
 			switch(op){
 				case 1:
-					if(personagens.gun > ragnar.defesa){
-					ragnar.pv = ragnar.pv - (personagens.gun - ragnar.defesa);
-					printf("Voce o acertou! os PV do adversario cairam para %d\n\n", ragnar.pv);
+					if(personagens.gun > boi.defesa){
+					boi.pv = boi.pv - (personagens.gun - boi.defesa);
+					printf("Voce o acertou! os PV do adversario cairam para %d\n\n", boi.pv);
 					}
-					else if(personagens.gun <= ragnar.defesa){
-						ragnar.pv = ragnar.pv-1;
-						printf("Voce o acertou! os PV do adversario cairam para %d\n\n", ragnar.pv);
+					else if(personagens.gun <= boi.defesa){
+						boi.pv = boi.pv-1;
+						printf("Voce o acertou! os PV do adversario cairam para %d\n\n", boi.pv);
 					}
 					break;
 						
@@ -1763,17 +1857,17 @@ void criacao(PERSONAGENS personagens)
 						break;
 				}
 				if(a == 0){
-					if(ragnar.dano > personagens.prot){
-						personagens.Pv = personagens.Pv - (ragnar.dano - personagens.prot);
+					if(boi.dano > personagens.prot){
+						personagens.Pv = personagens.Pv - (boi.dano - personagens.prot);
 						printf("O oponente lhe acertou! Seus PV cairam para %d\n\n", personagens.Pv);
 					}
-					else if(ragnar.dano <= personagens.prot){
+					else if(boi.dano <= personagens.prot){
 						personagens.Pv = personagens.Pv-1;
 						printf("O oponente lhe acertou! Seus PV cairam para %d\n\n", personagens.Pv);
 					}	
 				}
 				else if(a == 1){
-					ragnar.defesa = ragnar.defesa * 2;
+					boi.defesa = boi.defesa * 2;
 					printf("O oponente se defendeu! A defesa dele dobrou!\n\n");
 				}
 				else if(a == 2){
@@ -1781,38 +1875,38 @@ void criacao(PERSONAGENS personagens)
 					dado2 = rand()%6+1;
 					dado3 = rand()%6+1;
 					
-					if(ragnar.pv == pv2){
+					if(boi.pv == pv2){
 						printf("O oponente usou uma pocao! Mas a vida dele ja esta cheia\n\n");
 					}
-					else if(ragnar.pv <= 0){
-						ragnar.pv = 0;
+					else if(boi.pv <= 0){
+						boi.pv = 0;
 					}
 					else{
-						ragnar.pv = ragnar.pv + dado1 + dado2 + dado3;
-						if(ragnar.pv >= pv2){
-							ragnar.pv = pv2;
-							printf("O oponente usou uma pocao! Os PV dele subiram para %d\n\n", ragnar.pv);
+						boi.pv = boi.pv + dado1 + dado2 + dado3;
+						if(boi.pv >= pv2){
+							boi.pv = pv2;
+							printf("O oponente usou uma pocao! Os PV dele subiram para %d\n\n", boi.pv);
 						}
 						else{
-							printf("O oponente usou uma pocao! Os PV dele subiram para %d\n\n", ragnar.pv);
+							printf("O oponente usou uma pocao! Os PV dele subiram para %d\n\n", boi.pv);
 						}
 					}
 				}
 		}	
-		else if(ragnar.agilidade > personagens.Agilidade){
+		else if(boi.agilidade > personagens.Agilidade){
 			a = rand()%3;
 			if(a == 0){
-				if(ragnar.dano > personagens.prot){
-					personagens.Pv = personagens.Pv - (ragnar.dano - personagens.prot);
+				if(boi.dano > personagens.prot){
+					personagens.Pv = personagens.Pv - (boi.dano - personagens.prot);
 					printf("O oponente lhe acertou! Seus PV cairam para %d\n\n", personagens.Pv);
 				}
-				else if(ragnar.dano <= personagens.prot){
+				else if(boi.dano <= personagens.prot){
 					personagens.Pv = personagens.Pv-1;
 					printf("O oponente lhe acertou! Seus PV cairam para %d\n\n", personagens.Pv);
 				}	
 			}
 			else if(a == 1){
-				ragnar.defesa = defesa2;
+				boi.defesa = defesa2;
 				printf("O oponente se defendeu! A defesa dele dobrou!\n\n");
 			}
 			else if(a == 2){
@@ -1820,28 +1914,28 @@ void criacao(PERSONAGENS personagens)
 				dado2 = rand()%6+1;
 				dado3 = rand()%6+1;
 				
-				if(ragnar.pv == pv2){
+				if(boi.pv == pv2){
 					printf("O oponente usou uma pocao! Mas a vida dele ja esta cheia\n\n");
 				}
-				else if(ragnar.pv <= 0){
-					ragnar.pv = 0;
+				else if(boi.pv <= 0){
+					boi.pv = 0;
 				}
 				else{
-					ragnar.pv = ecbert.pv + dado1 + dado2 + dado3;
-					if(ragnar.pv >= pv2){
-						ragnar.pv = pv2;
-						printf("O oponente usou uma pocao! Os PV dele subiram para %d\n\n", ragnar.pv);
+					boi.pv = boi.pv + dado1 + dado2 + dado3;
+					if(boi.pv >= pv2){
+						boi.pv = pv2;
+						printf("O oponente usou uma pocao! Os PV dele subiram para %d\n\n", boi.pv);
 					}
 					else{
-						printf("O oponente usou uma pocao! Os PV dele subiram para %d\n\n", ragnar.pv);
+						printf("O oponente usou uma pocao! Os PV dele subiram para %d\n\n", boi.pv);
 					}
 				}
 			}
 			printf("Os stats dele sao:\n");
-			printf("PV:        %d\n", ragnar.pv);
-			printf("Dano:      %d\n", ragnar.dano);
-			printf("Defesa:    %d\n", ragnar.defesa);
-			printf("Agilidade: %d\n\n", ragnar.agilidade);
+			printf("PV:        %d\n", boi.pv);
+			printf("Dano:      %d\n", boi.dano);
+			printf("Defesa:    %d\n", boi.defesa);
+			printf("Agilidade: %d\n\n", boi.agilidade);
 			printf("Os seus stats sao:\n");
 			printf("PV:        %d\n", personagens.Pv);
 			printf("Dano:      %d\n", personagens.gun);
@@ -1855,13 +1949,13 @@ void criacao(PERSONAGENS personagens)
 			scanf(" %d", &op);
 			switch(op){
 				case 1:
-					if(personagens.gun > ragnar.defesa){
-					ragnar.pv = ragnar.pv - (personagens.gun - ragnar.defesa);
-					printf("Voce o acertou! os PV do adversario cairam para %d\n\n", ragnar.pv);
+					if(personagens.gun > boi.defesa){
+					boi.pv = boi.pv - (personagens.gun - boi.defesa);
+					printf("Voce o acertou! os PV do adversario cairam para %d\n\n", boi.pv);
 					}
-					else if(personagens.gun <= ragnar.defesa);{
-						ragnar.pv = ragnar.pv-1;
-						printf("Voce o acertou! os PV do adversario cairam para %d\n\n", ragnar.pv);
+					else if(personagens.gun <= boi.defesa);{
+						boi.pv = boi.pv-1;
+						printf("Voce o acertou! os PV do adversario cairam para %d\n\n", boi.pv);
 					}
 					break;
 					
@@ -1900,19 +1994,15 @@ void criacao(PERSONAGENS personagens)
 					break;
 			}
 		}
-	}while(personagens.Pv > 0 && ragnar.pv > 0);
+	}while(personagens.Pv > 0 && boi.pv > 0);
 	if(personagens.Pv <= 0)
 	{
 		printf("fim de jogo");
 		exit(0);
 	}
-	else if(ragnar.pv <= 0)
+	else if(boi.pv <= 0)
 	{
-		printf("\nvoce ganhou\n");
-		printf("\nParabens voce ganhou +5 atk e +4 de agilidade\n");
-	    personagens.Agilidade = personagens.Agilidade + 4;
-	    personagens.gun = personagens.gun + 5;
-		printf("\n\nAgilidade: %d", personagens.Agilidade);
-		printf("\n\nAtaque: %d", personagens.gun);
+		printf("VOCE GANHOU UHUUUULL!!!! voce conquistou sua vinganca");
+
 	}
 }
