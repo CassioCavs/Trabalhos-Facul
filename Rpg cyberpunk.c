@@ -64,7 +64,7 @@ int main()
 		break;	
 		
 		case 2 :
-		printf("Em um mundo onde a tecnologia evolui bruscamente, existe uma cidade\nesquecida por Deus onde o trafico reina, a poluicao em todo lugar, crimes e\nmortes, a policia nem liga mais. Um ex agente secreto viuvo tem sua filha\nsequestrada por traficantes da cidade, entao ele comeca a procura-la ate\ndescobrir que ela esta morta, morta por overdose de uma droga experimental\nque o traficante estava desenvolvendo. O Agente acaba descobrindo o nome\ndo traficante que orquestrou tudo e vai atras de sua vinganca.");
+		printf("um mundo onde a tecnologia evolui bruscamente, existe uma cidade\nesquecida por Deus onde o trafico reina, a poluicao em todo lugar, crimes e\nmortes, a policia nem liga mais. Um ex agente secreto viuvo tem sua filha\nsequestrada por traficantes da cidade, entao ele comeca a procura-la ate\ndescobrir que ela esta morta, morta por overdose de uma droga experimental\nque o traficante estava desenvolvendo. O Agente acaba descobrindo o nome\ndo traficante que orquestrou tudo e vai atras de sua vinganca.");
 		printf("\n\nPressione 'Enter' para continuar\n");
 	
 		getchar();
